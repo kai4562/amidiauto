@@ -20,7 +20,7 @@ BINARY_DIR ?= /usr/local/bin
 
 all: amidiauto
 
-CXXFLAGS ?= -O3
+CXXFLAGS ?= -O0
 LDFLAGS ?= -lasound
 
 CXX?=g++-4.9
@@ -35,7 +35,7 @@ amidiauto: amidiauto.o
 install: all
 	@systemctl stop amidiauto > /dev/null 2>&1 || true
 	@cp -p amidiauto $(BINARY_DIR)/
-	@cp -p amidiauto.service /usr/lib/systemd/system/
+	@cp -p amidiauto.service /etc/systemd/system/
 	@systemctl daemon-reload > /dev/null 2>&1
 	@systemctl enable amidiauto > /dev/null 2>&1
 	@systemctl start amidiauto > /dev/null 2>&1
